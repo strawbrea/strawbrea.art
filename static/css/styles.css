@@ -1,0 +1,14 @@
+/* styles.css */
+
+/* Flash button animation */
+.flash-button {
+    animation: flash 2s infinite;
+}
+
+/* Flash animation keyframes */
+@keyframes flash {
+    0% { background-color: yellow; }
+    33% { background-color: green; }
+    66% { background-color: orange; }
+    100% { background-color: yellow; }
+}
