@@ -13,11 +13,13 @@
             overflow: hidden; /* Prevents scrolling */
             background-color: #fff; /* Ensures a light background */
         }
+
         .container {
             height: 100%;
             display: flex;
             flex-direction: column; /* Ensures proper stacking of header and content */
         }
+
         .banner {
             display: flex;
             align-items: center;
@@ -26,6 +28,7 @@
             padding: 10px;
             border: 1px solid #000;
         }
+
         .details {
             display: flex;
             flex-direction: column;
@@ -33,29 +36,21 @@
             align-items: center;
             height: 100%;
         }
+
         .details p {
             color: red;
             font-size: 1.2rem;
         }
+
         .row {
             flex: 1; /* Takes remaining space */
             display: flex;
             overflow: hidden;
         }
-        .pdf-container {
-            position: relative;
-            width: 100%; /* Full width of the column */
-            overflow: hidden;
-        }
 
-        #pdf-render {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%; /* This will scale the canvas to fit the container */
-            height: 100%;
-            transform: scale(0.5); /* Adjust this scale factor based on the initial render scale */
-}
+        .article-container {
+            flex: 3; /* 60% width */
+        }
 
     </style>
 </head>
@@ -83,59 +78,12 @@
                 </article>
             </div>
             <div class="col-lg-4 col-md-4 col-12 pdf-container">
-                <canvas id="pdf-render"></canvas>
+                <div class="pdf-background"></div>
+                <a href="{{ url_for('static', filename='pdf/resume.pdf') }}" download="Resume.pdf" style="display: block; text-align: center; margin-top: 10px;">
+                    Click here to download
+                </a>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-    <script>
-        const url = "{{ url_for('static', filename='pdf/resume.pdf') }}";
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js';
-    
-        const canvas = document.getElementById('pdf-render');
-        const context = canvas.getContext('2d');
-        let pdfDoc = null;
-    
-        function renderPage(num) {
-            pdfDoc.getPage(num).then(function(page) {
-                const container = document.querySelector('.pdf-container');
-                const scale = 2; // Higher resolution rendering
-                const viewport = page.getViewport({ scale: scale });
-    
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-    
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-    
-                page.render(renderContext).promise.then(function() {
-                    console.log('Page rendered');
-                }).catch(function(err) {
-                    console.error('Render error:', err);
-                });
-            }).catch(function(err) {
-                console.error('Error getting page:', err);
-            });
-        }
-    
-        function loadDocument() {
-            pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-                pdfDoc = pdfDoc_;
-                console.log('PDF loaded, number of pages:', pdfDoc.numPages);
-                renderPage(1);
-            }).catch(function(err) {
-                console.error('Error loading PDF:', err);
-            });
-        }
-    
-        document.addEventListener('DOMContentLoaded', loadDocument);
-        window.addEventListener('resize', function() {
-            if (pdfDoc) {
-                renderPage(1); // Re-render the page when the window is resized
-            }
-        });
-    </script>
 </body>
 </html>

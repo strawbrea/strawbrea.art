@@ -1,14 +1,14 @@
-/* styles.css */
-
-/* Flash button animation */
-.flash-button {
-    animation: flash 2s infinite;
+.pdf-background {
+    background-image: url('/static/images/resume.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-/* Flash animation keyframes */
-@keyframes flash {
-    0% { background-color: yellow; }
-    33% { background-color: green; }
-    66% { background-color: orange; }
-    100% { background-color: yellow; }
+.pdf-container {
+    position: relative;
+    width: 100%; /* Full width of its column */
+    overflow: hidden;
+    padding-top: 52.25%; /* Adjust this to maintain the aspect ratio */
+    background-color: white; /* Background color */
 }
