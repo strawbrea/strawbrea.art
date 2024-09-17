@@ -10,12 +10,12 @@ def index():
 # Left panel content
 @app.route('/left-panel')
 def left_panel():
-    return render_template('left-panel.html')
+    return render_template('left_panel.html')
 
 # Right panel content
 @app.route('/right-panel')
 def right_panel():
-    return render_template('right-panel.html')
+    return render_template('right_panel.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
