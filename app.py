@@ -17,5 +17,9 @@ def left_panel():
 def right_panel():
     return render_template('right_panel.html')
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

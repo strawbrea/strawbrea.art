@@ -19,6 +19,19 @@
             flex-direction: column; /* Ensures proper stacking of header and content */
         }
     
+        /* Responsive header for LOOKBOOK.brea */
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+    
+        header h1 {
+            font-size: 5vw; /* Font size scales with viewport width */
+            font-weight: bold;
+            margin: 0;
+        }
+    
+        /* Responsive banner */
         .banner {
             display: flex;
             align-items: center;
@@ -26,6 +39,29 @@
             background-color: #f8f9fa;
             padding: 10px;
             border: 1px solid #000;
+            height: 15vh; /* Responsive height relative to viewport */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Ensure padding and borders are included in size */
+        }
+    
+        .banner-content {
+            display: flex;
+            flex: 1;
+            justify-content: flex-start; /* Align images to the left */
+            align-items: center;
+            gap: 10px; /* Space between images */
+        }
+    
+        .banner img {
+            height: 100%; /* Image takes up 100% of the banner height */
+            max-height: 100%; /* Ensure the image doesn’t exceed banner height */
+            width: auto; /* Maintain aspect ratio */
+            max-width: 15vw; /* Responsive width based on viewport */
+            margin-right: 0; /* Remove default margin between images */
+        }
+    
+        .banner-content img:last-child {
+            margin-right: 20px; /* Adds space between the last image and text */
         }
     
         .details {
@@ -33,47 +69,58 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            text-align: center;
+            font-size: 1.5vw; /* Responsive font size based on viewport width */
+            color: red; /* Make the text red */
         }
     
-        .details p {
-            color: red;
-            font-size: 1.2rem;
-        }
-    
+        /* Flex row that contains article and resume */
         .row {
-            flex: 1; /* Takes remaining space */
             display: flex;
-            justify-content: space-between; /* Ensures proper spacing */
-            overflow: auto; /* Allow scrolling within the row */
+            flex-wrap: nowrap; /* Prevent the columns from wrapping */
+            justify-content: space-between;
+            overflow: auto; /* Allow scrolling if necessary */
         }
     
-        /* Adjust these flex values for different proportions */
+        /* Responsive article container */
         .article-container {
             flex: 4; /* 4/7 width for the article */
-            padding-right: 20px; /* Adds padding to the right */
+            padding-right: 20px;
+            min-width: 300px; /* Ensures it doesn't get too narrow */
         }
     
+        .article-container article h2 {
+            font-size: 3vw; /* Make article header responsive */
+            margin-bottom: 10px;
+        }
+    
+        .article-container article p {
+            font-size: 1.2vw; /* Responsive paragraph font size */
+            line-height: 1.5em;
+        }
+    
+        /* Resume container */
         .pdf-container {
             flex: 3; /* 3/7 width for the resume */
             border-left: 2px solid #ddd; /* Adds a separator */
-            padding-left: 20px; /* Adds padding to the left */
+            padding-left: 20px;
             display: flex;
-            flex-direction: column; /* Make the link and image stack vertically */
+            flex-direction: column;
             align-items: center;
+            min-width: 250px; /* Ensures the resume column doesn't get too narrow */
         }
     
         .resume-image {
             max-width: 100%;   /* Ensures the image doesn't overflow horizontally */
             max-height: 90vh;  /* Ensures the image takes up a large part of the viewport height */
             height: auto;      /* Maintains aspect ratio */
-            border: 1px solid #ccc; /* Adds a border */
+            border: 1px solid #ccc;
             display: block;
         }
     
         a {
             text-align: center;
-            margin-bottom: 10px; /* Adds space between the link and the resume */
+            margin-bottom: 10px;
             display: block;
         }
     </style>
@@ -84,7 +131,7 @@
             <h1>LOOKBOOK.brea</h1>
         </header>
         <div class="banner">
-            <div class="d-flex">
+            <div class="banner-content">
                 <img src="/static/images/sideProj1.png" alt="Side Project 1">
                 <img src="/static/images/sideProj2.png" alt="Side Project 2">
                 <img src="/static/images/sideProj3.png" alt="Side Project 3">
