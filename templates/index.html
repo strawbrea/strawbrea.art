@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOOKBOOK.brea</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Prevents scrolling */
+            overflow: auto; /* Allow scrolling */
             background-color: #fff; /* Ensures a light background */
         }
-
+    
         .container {
             height: 100%;
             display: flex;
             flex-direction: column; /* Ensures proper stacking of header and content */
         }
-
+    
         .banner {
             display: flex;
             align-items: center;
@@ -28,7 +27,7 @@
             padding: 10px;
             border: 1px solid #000;
         }
-
+    
         .details {
             display: flex;
             flex-direction: column;
@@ -36,22 +35,47 @@
             align-items: center;
             height: 100%;
         }
-
+    
         .details p {
             color: red;
             font-size: 1.2rem;
         }
-
+    
         .row {
             flex: 1; /* Takes remaining space */
             display: flex;
-            overflow: hidden;
+            justify-content: space-between; /* Ensures proper spacing */
+            overflow: auto; /* Allow scrolling within the row */
         }
-
+    
+        /* Adjust these flex values for different proportions */
         .article-container {
-            flex: 3; /* 60% width */
+            flex: 4; /* 4/7 width for the article */
+            padding-right: 20px; /* Adds padding to the right */
         }
-
+    
+        .pdf-container {
+            flex: 3; /* 3/7 width for the resume */
+            border-left: 2px solid #ddd; /* Adds a separator */
+            padding-left: 20px; /* Adds padding to the left */
+            display: flex;
+            flex-direction: column; /* Make the link and image stack vertically */
+            align-items: center;
+        }
+    
+        .resume-image {
+            max-width: 100%;   /* Ensures the image doesn't overflow horizontally */
+            max-height: 90vh;  /* Ensures the image takes up a large part of the viewport height */
+            height: auto;      /* Maintains aspect ratio */
+            border: 1px solid #ccc; /* Adds a border */
+            display: block;
+        }
+    
+        a {
+            text-align: center;
+            margin-bottom: 10px; /* Adds space between the link and the resume */
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -61,9 +85,9 @@
         </header>
         <div class="banner">
             <div class="d-flex">
-                <img src="{{ url_for('static', filename='images/sideProj1.png') }}" alt="Side Project 1">
-                <img src="{{ url_for('static', filename='images/sideProj2.png') }}" alt="Side Project 2">
-                <img src="{{ url_for('static', filename='images/sideProj3.png') }}" alt="Side Project 3">
+                <img src="/static/images/sideProj1.png" alt="Side Project 1">
+                <img src="/static/images/sideProj2.png" alt="Side Project 2">
+                <img src="/static/images/sideProj3.png" alt="Side Project 3">
             </div>
             <div class="details">
                 <p>View details about my projects now!</p>
@@ -78,10 +102,10 @@
                 </article>
             </div>
             <div class="col-lg-4 col-md-4 col-12 pdf-container">
-                <div class="pdf-background"></div>
-                <a href="{{ url_for('static', filename='pdf/resume.pdf') }}" download="resume.pdf" style="display: block; text-align: center; margin-top: 10px;">
-                    Click here to download
+                <a href="{{ url_for('static', filename='pdf/resume.pdf') }}" download="resume.pdf">
+                    Click here to download this resume!
                 </a>
+                <img src="/static/images/resume.jpeg" alt="Resume" class="resume-image">
             </div>
         </div>
     </div>
