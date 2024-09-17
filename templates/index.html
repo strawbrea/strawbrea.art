@@ -3,111 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOOKBOOK.brea</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Layered Iframes</title>
     <style>
-        body, html {
-            height: 100%;
+        body {
             margin: 0;
-            overflow: auto; /* Allow scrolling */
-            background-color: #fff; /* Ensures a light background */
+            height: 100vh;
+            background-color: #d3eef7;
         }
-    
+
         .container {
-            height: 100%;
-            display: flex;
-            flex-direction: column; /* Ensures proper stacking of header and content */
-        }
-    
-        .banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border: 1px solid #000;
-        }
-    
-        .details {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: relative;
             height: 100%;
         }
-    
-        .details p {
-            color: red;
-            font-size: 1.2rem;
+
+        /* Left iframe (Breanna Lowery) */
+        .left-panel {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 50%;
+            height: 80%;
+            border: none;
+            z-index: 2;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
-    
-        .row {
-            flex: 1; /* Takes remaining space */
-            display: flex;
-            justify-content: space-between; /* Ensures proper spacing */
-            overflow: auto; /* Allow scrolling within the row */
-        }
-    
-        /* Adjust these flex values for different proportions */
-        .article-container {
-            flex: 4; /* 4/7 width for the article */
-            padding-right: 20px; /* Adds padding to the right */
-        }
-    
-        .pdf-container {
-            flex: 3; /* 3/7 width for the resume */
-            border-left: 2px solid #ddd; /* Adds a separator */
-            padding-left: 20px; /* Adds padding to the left */
-            display: flex;
-            flex-direction: column; /* Make the link and image stack vertically */
-            align-items: center;
-        }
-    
-        .resume-image {
-            max-width: 100%;   /* Ensures the image doesn't overflow horizontally */
-            max-height: 90vh;  /* Ensures the image takes up a large part of the viewport height */
-            height: auto;      /* Maintains aspect ratio */
-            border: 1px solid #ccc; /* Adds a border */
-            display: block;
-        }
-    
-        a {
-            text-align: center;
-            margin-bottom: 10px; /* Adds space between the link and the resume */
-            display: block;
+
+        /* Right iframe (Lookbook.brea) */
+        .right-panel {
+            position: absolute;
+            top: 100px;
+            left: 40%;
+            width: 45%;
+            height: 75%;
+            border: none;
+            z-index: 1;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="text-center my-4">
-            <h1>LOOKBOOK.brea</h1>
-        </header>
-        <div class="banner">
-            <div class="d-flex">
-                <img src="/static/images/sideProj1.png" alt="Side Project 1">
-                <img src="/static/images/sideProj2.png" alt="Side Project 2">
-                <img src="/static/images/sideProj3.png" alt="Side Project 3">
-            </div>
-            <div class="details">
-                <p>View details about my projects now!</p>
-                <a href="{{ url_for('projects') }}" class="btn btn-primary flash-button">Click</a>
-            </div>
-        </div>
-        <div class="row my-4">
-            <div class="col-lg-8 col-md-8 col-12 article-container">
-                <article>
-                    <h2>Hot skills, by hype + freshness</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                </article>
-            </div>
-            <div class="col-lg-4 col-md-4 col-12 pdf-container">
-                <a href="{{ url_for('static', filename='pdf/resume.pdf') }}" download="resume.pdf">
-                    Click here to download this resume!
-                </a>
-                <img src="/static/images/resume.jpeg" alt="Resume" class="resume-image">
-            </div>
-        </div>
+        <!-- Left Panel as an iframe -->
+        <iframe src="/left-panel" class="left-panel"></iframe>
+
+        <!-- Right Panel as an iframe -->
+        <iframe src="/right-panel" class="right-panel"></iframe>
     </div>
 </body>
 </html>

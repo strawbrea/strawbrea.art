@@ -2,25 +2,20 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+# Main index route that serves the page with iframes
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/pdf/<filename>')
-def serve_pdf(filename):
-    return send_from_directory('static/pdf', filename)
-
-@app.route('/left_panel')
+# Left panel content
+@app.route('/left-panel')
 def left_panel():
-    return render_template('left_panel.html')
+    return render_template('left-panel.html')
 
-@app.route('/right_panel')
+# Right panel content
+@app.route('/right-panel')
 def right_panel():
-    return render_template('right_panel.html')
-
-@app.route('/projects')
-def projects():
-    return "<h1>Projects Page Coming Soon!</h1>"
+    return render_template('right-panel.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

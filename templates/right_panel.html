@@ -1,20 +1,117 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-<!--
-<div>
-    <h2>Favorite Songs: [List]</h2>
-    <p>Breanna's Interests</p>
-    <ul>
-        <li>Competitive Valorant player</li>
-        <li>3x Magic: The Gathering Journey Winner</li>
-        <li>Midwest emo enthusiast</li>
-        <li>Platform shoe supremacist</li>
-        <li>Toru Oikawa hater!</li>
-    </ul> -->
-    <!-- Add more content as needed --> <!--
-</div>
-{% endblock %}
-
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOOKBOOK.brea</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: auto; /* Allow scrolling */
+            background-color: #fff; /* Ensures a light background */
+        }
+    
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Ensures proper stacking of header and content */
+        }
+    
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+    
+        .details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    
+        .details p {
+            color: red;
+            font-size: 1.2rem;
+        }
+    
+        .row {
+            flex: 1; /* Takes remaining space */
+            display: flex;
+            justify-content: space-between; /* Ensures proper spacing */
+            overflow: auto; /* Allow scrolling within the row */
+        }
+    
+        /* Adjust these flex values for different proportions */
+        .article-container {
+            flex: 4; /* 4/7 width for the article */
+            padding-right: 20px; /* Adds padding to the right */
+        }
+    
+        .pdf-container {
+            flex: 3; /* 3/7 width for the resume */
+            border-left: 2px solid #ddd; /* Adds a separator */
+            padding-left: 20px; /* Adds padding to the left */
+            display: flex;
+            flex-direction: column; /* Make the link and image stack vertically */
+            align-items: center;
+        }
+    
+        .resume-image {
+            max-width: 100%;   /* Ensures the image doesn't overflow horizontally */
+            max-height: 90vh;  /* Ensures the image takes up a large part of the viewport height */
+            height: auto;      /* Maintains aspect ratio */
+            border: 1px solid #ccc; /* Adds a border */
+            display: block;
+        }
+    
+        a {
+            text-align: center;
+            margin-bottom: 10px; /* Adds space between the link and the resume */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1>LOOKBOOK.brea</h1>
+        </header>
+        <div class="banner">
+            <div class="d-flex">
+                <img src="/static/images/sideProj1.png" alt="Side Project 1">
+                <img src="/static/images/sideProj2.png" alt="Side Project 2">
+                <img src="/static/images/sideProj3.png" alt="Side Project 3">
+            </div>
+            <div class="details">
+                <p>View details about my projects now!</p>
+                <a href="{{ url_for('projects') }}" class="btn btn-primary flash-button">Click</a>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-lg-8 col-md-8 col-12 article-container">
+                <article>
+                    <h2>Hot skills, by hype + freshness</h2>
+                    <p>What is Lorem Ipsum?
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+                        
+                        <p>Why do we use it?
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                </article>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12 pdf-container">
+                <a href="{{ url_for('static', filename='pdf/resume.pdf') }}" download="resume.pdf">
+                    Click here to download this resume!
+                </a>
+                <img src="/static/images/resume.jpeg" alt="Resume" class="resume-image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
