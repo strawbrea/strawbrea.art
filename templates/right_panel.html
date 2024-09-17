@@ -9,7 +9,8 @@
         body, html {
             height: 100%;
             margin: 0;
-            overflow: auto; /* Allow scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto;   /* Allow vertical scrolling */
             background-color: #fff; /* Ensures a light background */
         }
     
@@ -22,7 +23,7 @@
         /* Left-aligned header for LOOKBOOK.brea */
         header {
             text-align: left; /* Align text to the left */
-            margin-left: 8px; /* Add some padding to the left for spacing */
+            margin-left: 20px; /* Add some padding to the left for spacing */
             margin-top: 20px;
         }
     
@@ -80,7 +81,8 @@
             display: flex;
             flex-wrap: nowrap; /* Prevent the columns from wrapping */
             justify-content: space-between;
-            overflow: auto; /* Allow scrolling if necessary */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
     
         /* Responsive article container */
@@ -123,6 +125,29 @@
             text-align: center;
             margin-bottom: 10px;
             display: block;
+        }
+    
+        /* Media query for very small screens (like mobile) */
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column; /* Stack article and resume vertically */
+            }
+    
+            .article-container,
+            .pdf-container {
+                flex: 1;
+                min-width: 100%; /* Ensure both columns take full width */
+                padding: 10px;
+            }
+    
+            .article-container {
+                padding-right: 0;
+            }
+    
+            .pdf-container {
+                border-left: none; /* Remove separator */
+                padding-left: 0;
+            }
         }
     </style>
 </head>
